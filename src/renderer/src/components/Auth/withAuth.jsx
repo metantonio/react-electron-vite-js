@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Context } from "../../store/appContext";
+import { Context } from "../../store/appContext.jsx";
 import { Redirect } from "react-router-dom";
 
 

@@ -29,6 +29,11 @@ function createWindow() {
     return { action: 'deny' }
   })
 
+  mainWindow.on('resize', () => {
+    const [width, height] = mainWindow.getSize();
+    mainWindow.webContents.send('window-resize', { width, height });
+  });
+
   // Pasar variables de entorno al proceso de renderizado
   mainWindow.webContents.on('did-finish-load', () => {
     console.log('BASE_URL:', process.env.BASE_URL_PUBLIC);

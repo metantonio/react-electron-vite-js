@@ -13,7 +13,8 @@ import Login from "./views/Login/login.jsx";
 import { Signup } from "./views/Login/signup.jsx";
 
 //const IQgpt = React.lazy(() => import("./views/IQGPT/index.jsx"))
-
+import IQgpt from "./views/IQGPT/index.jsx"
+import MyTestComponent from "./views/test/main.jsx"
 
 const LoadingComponent2 = () => {
   return (
@@ -40,6 +41,9 @@ const Layout = () => {
             </Route>
             <Route exact path="/signup-iq">
               <Signup />
+            </Route>
+            <Route exact path="/main">
+                <MyTestComponent />
             </Route>
             {/* <Route exact path="/iq-gpt">
               <IQgpt />
