@@ -20,9 +20,13 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
+    "@mui/material": "^6.0.1",
     "@popperjs/core": "^2.11.8",
+    "@react-oauth/google": "^0.12.1",
     "dotenv": "^16.4.5",
     "electron-updater": "^6.1.7",
     "sweetalert2": "^11.12.4"

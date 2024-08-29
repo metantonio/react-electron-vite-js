@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Context } from "../../store/appContext";
+import { Context } from "../../store/appContext.jsx";
 import { Redirect, useHistory } from "react-router-dom";
-import logo from "../../../img/logo.png";
-import imgbg from "../../../img/bg.jpg";
+import logo from "../../assets/logo.png";
+import imgbg from "../../assets/bg.png";
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2';
 import styles from "./login.module.css";
@@ -48,7 +48,7 @@ const Login = () => {
             return
         }
         console.log("validating")
-        const response = await fetch(process.env.BASE_URL2 + "/new_password_poker_user", {
+        const response = await fetch(store.BASE_URL2 + "/new_password_poker_user", {
             method: "PUT",
             //mode: "no-cors",
             headers: {
@@ -138,7 +138,7 @@ const Login = () => {
                                     <div className="row d-flex text-center">
                                         <div className={styles.sign_in_buttons}>
                                             <div className={styles.google_div}>
-                                                <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID}>
+                                                <GoogleOAuthProvider clientId={store.GOOGLE_CLIENT_ID}>
                                                     <Auth></Auth>
                                                 </GoogleOAuthProvider>
                                             </div>

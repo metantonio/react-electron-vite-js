@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Redirect, useHistory } from "react-router-dom";
-import { Context } from "../../store/appContext";
+import { Context } from "../../store/appContext.jsx";
 import { makeStyles } from "@material-ui/core/styles";
 import { Modal} from "@material-ui/core";
 //import "./signup.css";

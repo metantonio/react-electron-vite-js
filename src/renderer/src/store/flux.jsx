@@ -85,7 +85,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					window.electron.ipcRenderer.send('about to read environment variables')
 					console.log("vars: ", env)
                     setStore({...store, BASE_URL: env.BASE_URL });
-					setStore({...store, BASE_URL2: env.BASE_URL2 });
+					setStore({...store, BASE_URL2: env.BASE_URL2, GOOGLE_CLIENT_ID: env.GOOGLE_CLIENT_ID });
 					window.electron.ipcRenderer.send('finish to read environment variables')
                     console.log('Base URL cargada en flux:', store.BASE_URL);
                 });

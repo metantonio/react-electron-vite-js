@@ -32,7 +32,8 @@ function createWindow() {
     console.log('BASE_URL:', process.env.BASE_URL_PUBLIC);
     mainWindow.webContents.send('env-variables', {
       baseURL: process.env.BASE_URL_PUBLIC,
-      baseURL2: process.env.BASE_URL2
+      baseURL2: process.env.BASE_URL2,
+      googleClientID: process.env.GOOGLE_CLIENT_ID
         // Puedes pasar otras variables también
     });
   });

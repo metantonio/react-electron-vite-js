@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
-import { Context } from "../../store/appContext";
+import { Context } from "../../store/appContext.jsx";
 /* import GoogleIcon from "@mui/icons-material/Google";
 import IconButton from "@mui/material/IconButton"; */
 import { useGoogleLogin } from "@react-oauth/google";
-import UserAvatar from "./userAvatar";
+import UserAvatar from "./userAvatar.jsx";
 import { Redirect, useHistory } from "react-router-dom";
-const BASE_URL2 = process.env.BASE_URL2
 const URL_LOGIN_GOOGLE = "/google_login"
 import styles from "./login.module.css";
 
@@ -30,7 +29,7 @@ export default function Auth() {
     async function getUserInfo(codeResponse) {
 
 
-        let temp_url = BASE_URL2 + URL_LOGIN_GOOGLE
+        let temp_url = store.BASE_URL2 + URL_LOGIN_GOOGLE
         let response = await fetch(temp_url, {
             method: "POST",
             headers: {
