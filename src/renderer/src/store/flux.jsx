@@ -1,11 +1,11 @@
-const BASE_URL = process.env.BASE_URL;
-const BASE_URL2 = process.env.BASE_URL2;
+//const BASE_URL = process.env.BASE_URL_PUBLIC;
+//const BASE_URL2 = process.env.BASE_URL2;
 
-import { auto } from "@popperjs/core";
-import { userStore, userActions } from './users.js'
-import { promptStore, promptActions } from "./promptLLM.js";
-import { workflowStore, workflowActions } from "./iqWorkflow.js";
-import { dashboardStore, dashboardActions } from "./dashboard.js";
+//import { auto } from "@popperjs/core";
+import { userStore, userActions } from './users.jsx'
+import { promptStore, promptActions } from "./promptLLM.jsx";
+import { workflowStore, workflowActions } from "./iqWorkflow.jsx";
+import { dashboardStore, dashboardActions } from "./dashboard.jsx";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -26,6 +26,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			...promptStore,
 			...workflowStore,
 			...dashboardStore,
+			BASE_URL: '',
+			BASE_URL2: '',
 			traders: [],
 			expandwin: false,
 			tasas: [],
@@ -53,7 +55,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			movContable: [],
 			movimientoCaja: [],
 			registroMovContable: {},
-			movimientoCaja: [],
 			caja: [],
 			grupoReportes: "",
 			cajero: "",
@@ -66,7 +67,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 			...promptActions(getStore, getActions, setStore),
 			...workflowActions(getStore, getActions, setStore),
 			...dashboardActions(getStore, getActions, setStore),
+			someAction: async () => {
+                // Enviar mensaje al proceso principal
+                window.electron.ipcRenderer.send('do-something', { data: 'info' });
 
+                // Recibir respuesta
+                window.electron.ipcRenderer.once('reply', (event, response) => {
+                    console.log('Respuesta desde el proceso principal:', response);
+                    setStore({ data: response });
+                });
+            },
+			init: () => {
+                window.electron.ipcRenderer.on('env-variables', (env) => {
+					window.electron.ipcRenderer.send('about to read environment variables')
+                    setStore({ BASE_URL: env.BASE_URL });
+					setStore({ BASE_URL2: env.BASE_URL2 });
+					window.electron.ipcRenderer.send('finish to read environment variables')
+                    console.log('Base URL cargada en flux:', env.BASE_URL);
+                });
+            },
 			useFetch: async (endpoint, data, metodo = "GET") => {
 				let url = BASE_URL2 + endpoint;
 				let actions = getActions();

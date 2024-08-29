@@ -3,8 +3,8 @@ export const archivosStore = {
 }
 
 export function archivosActions(getStore, getActions, setStore) {
-    const BASE_URL = process.env.BASE_URL;
-    const BASE_URL2 = process.env.BASE_URL2;
+    //const BASE_URL = process.env.BASE_URL;
+    //const BASE_URL2 = process.env.BASE_URL2;
     return {
         downloadBase64File: async (base64Data, contentType, fileName)=> {
             const linkSource = `data:${contentType};base64,${base64Data}`;

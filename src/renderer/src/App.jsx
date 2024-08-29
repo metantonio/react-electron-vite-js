@@ -1,9 +1,14 @@
 import Versions from './components/Versions'
 import electronLogo from './assets/electron.svg'
 import React, { useState, useContext } from "react";
+import { Context } from "./store/appContext.jsx";
+//import { BrowserRouter, Route, Router, Switch, Suspense, lazy } from "react-router-dom";
+import ScrollToTop from "./components/scrollToTop.jsx";
+import injectContext from "./store/appContext";
 
-function App() {
+const App = () => {
   const ipcHandle = () => window.electron.ipcRenderer.send('ping')
+  const { store, actions } = useContext(Context);
 
   return (
     <>
@@ -32,5 +37,5 @@ function App() {
   )
 }
 
-export default App
+export default injectContext(App);
 

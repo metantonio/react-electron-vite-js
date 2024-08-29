@@ -55,8 +55,8 @@ export const userStore = {
 }
 
 export function userActions(getStore, getActions, setStore) {
-    const BASE_URL = process.env.BASE_URL;
-    const BASE_URL2 = process.env.BASE_URL2;
+    //const BASE_URL = process.env.BASE_URL;
+    //const BASE_URL2 = process.env.BASE_URL2;
     return {
         saveUserData: (user, google = null) => {
             setStore({ ...store, user: user, logOutConfirmation: true });

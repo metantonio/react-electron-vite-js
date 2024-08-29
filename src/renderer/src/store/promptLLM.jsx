@@ -6,8 +6,8 @@ export const promptStore = {
 }
 
 export function promptActions(getStore, getActions, setStore) {
-    const BASE_URL = process.env.BASE_URL;
-    const BASE_URL2 = process.env.BASE_URL2;
+    //const BASE_URL = process.env.BASE_URL;
+    //const BASE_URL2 = process.env.BASE_URL2;
     return { 
         changePromptLLM: ()=>{
             /* This function will set the state promptLLM to the opposite boolean value, the idea

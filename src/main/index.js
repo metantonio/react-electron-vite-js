@@ -2,6 +2,7 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+require('dotenv').config();
 
 function createWindow() {
   // Create the browser window.
@@ -25,6 +26,15 @@ function createWindow() {
     shell.openExternal(details.url)
     return { action: 'deny' }
   })
+
+  // Pasar variables de entorno al proceso de renderizado
+  mainWindow.webContents.on('did-finish-load', () => {
+    mainWindow.webContents.send('env-variables', {
+        BASE_URL: process.env.BASE_URL_PUBLIC,
+        BASE_URL2: process.env.BASE_URL2
+        // Puedes pasar otras variables también
+    });
+  });
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.

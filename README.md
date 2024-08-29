@@ -11,7 +11,7 @@ An Electron application with React
 ### Install
 
 ```bash
-$ npm install
+$ npm install --legacy-peer-deps
 ```
 
 ### Development

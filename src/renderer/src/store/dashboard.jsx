@@ -5,8 +5,8 @@ export const dashboardStore = {
 }
 
 export function dashboardActions(getStore, getActions, setStore) {
-    const BASE_URL = process.env.BASE_URL;
-    const BASE_URL2 = process.env.BASE_URL2;
+    //const BASE_URL = process.env.BASE_URL;
+    //const BASE_URL2 = process.env.BASE_URL2;
     return {
         setListDB: (list) => {
             // add data to the global state of list of databases

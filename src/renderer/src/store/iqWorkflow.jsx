@@ -5,8 +5,8 @@ export const workflowStore = {
 }
 
 export function workflowActions(getStore, getActions, setStore) {
-    const BASE_URL = process.env.BASE_URL;
-    const BASE_URL2 = process.env.BASE_URL2;
+    //const BASE_URL = process.env.BASE_URL;
+    //const BASE_URL2 = process.env.BASE_URL2;
     return {
         addNode: (sourceNodeId, newNode) => {
             // Add the new node to the existing elements
