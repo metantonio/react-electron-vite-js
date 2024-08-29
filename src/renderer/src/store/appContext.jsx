@@ -25,9 +25,7 @@ const injectContext = (PassedComponent) => {
             // Ejemplo: recibir mensajes de Electron
             window.electron.ipcRenderer.on('message-from-main', (event, data) => {
                 console.log('Mensaje desde el proceso principal:', data);
-            });
-
-			
+            });			
 
             return () => {
                 // Cleanup: Desuscribirse de eventos para evitar fugas de memoria
