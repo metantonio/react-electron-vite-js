@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 
 export const userStore = {
-    user: {JRCompaniaAut:["QLX"]},
+    user: { JRCompaniaAut: ["QLX"] },
     userqr: {},
     users: [],
     logOutConfirmation: false,
@@ -57,6 +57,7 @@ export const userStore = {
 export function userActions(getStore, getActions, setStore) {
     //const BASE_URL = process.env.BASE_URL;
     //const BASE_URL2 = process.env.BASE_URL2;
+
     return {
         saveUserData: (user, google = null) => {
             setStore({ ...store, user: user, logOutConfirmation: true });
@@ -79,6 +80,9 @@ export function userActions(getStore, getActions, setStore) {
             }
         },
         getUsers: async () => {
+            let storeTemp = getStore();
+            const BASE_URL = storeTemp.baseURL;
+            const BASE_URL2 = storeTemp.baseURL2;
             let url = BASE_URL + "/usuarios/alldata";
             let actions = getActions();
             let store = getStore();
@@ -105,6 +109,9 @@ export function userActions(getStore, getActions, setStore) {
             return true;
         },
         checkUser: async () => {
+            let storeTemp = getStore();
+            const BASE_URL = storeTemp.baseURL;
+            const BASE_URL2 = storeTemp.baseURL2;
             let url = BASE_URL + "/usuarios/check";
 
             let actions = getActions();
@@ -227,6 +234,9 @@ export function userActions(getStore, getActions, setStore) {
             }
         },
         permisos: async (permiso, variableEntidad) => {
+            let storeTemp = getStore();
+            const BASE_URL = storeTemp.baseURL;
+            const BASE_URL2 = storeTemp.baseURL2;
             let store = getStore();
             let usuario = await store.user;
 
@@ -254,6 +264,9 @@ export function userActions(getStore, getActions, setStore) {
             return false;
         },
         changePassword: async (endpoint, data) => {
+            let storeTemp = getStore();
+            const BASE_URL = storeTemp.baseURL;
+            const BASE_URL2 = storeTemp.baseURL2;
             let url = BASE_URL + endpoint;
             let actions = getActions();
             let store = getStore();
@@ -335,6 +348,9 @@ export function userActions(getStore, getActions, setStore) {
             localStorage.setItem("picture", "");
         },
         login_qr_user: async (user_name, password) => {
+            let storeTemp = getStore();
+            const BASE_URL = storeTemp.baseURL;
+            const BASE_URL2 = storeTemp.baseURL2;
             let url = BASE_URL2 + "/login-qr-user";
             let actions = getActions();
             let store = getStore();
@@ -395,6 +411,9 @@ export function userActions(getStore, getActions, setStore) {
             }
         },
         login: async (user_name, password) => {
+            let storeTemp = getStore();
+            const BASE_URL = storeTemp.baseURL;
+            const BASE_URL2 = storeTemp.baseURL2;
             let url = BASE_URL2 + "/login";
             let actions = getActions();
             let store = getStore();
@@ -465,6 +484,9 @@ export function userActions(getStore, getActions, setStore) {
             }
         },
         logOut: async () => {
+            let storeTemp = getStore();
+            const BASE_URL = storeTemp.baseURL;
+            const BASE_URL2 = storeTemp.baseURL2;
             let token = localStorage.getItem("token");
             let url = BASE_URL2 + "/logout";
             let response = await fetch(url, {
@@ -486,7 +508,7 @@ export function userActions(getStore, getActions, setStore) {
             }
             console.log("cerrando sesión");
             setStore({
-                user: {JRCompaniaAut:["QLX"]},
+                user: { JRCompaniaAut: ["QLX"] },
                 users: [],
                 logOutConfirmation: false,
                 visualizacion: false,

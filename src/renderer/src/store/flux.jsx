@@ -84,16 +84,17 @@ const getState = ({ getStore, getActions, setStore }) => {
                 window.api.ipcRenderer.on('env-variables', (env) => {
 					window.electron.ipcRenderer.send('about to read environment variables')
 					console.log("vars: ", env)
-                    setStore({...store, BASE_URL: env.BASE_URL });
-					setStore({...store, BASE_URL2: env.BASE_URL2, GOOGLE_CLIENT_ID: env.GOOGLE_CLIENT_ID });
+                    setStore({...store, ...env });
+					//setStore({...store, BASE_URL2: env.base_URL2, GOOGLE_CLIENT_ID: env.GOOGLE_CLIENT_ID });
 					window.electron.ipcRenderer.send('finish to read environment variables')
-                    console.log('Base URL cargada en flux:', store.BASE_URL);
+                    console.log('Base URL2 cargada en flux:', store);
                 });
             },
 			useFetch: async (endpoint, data, metodo = "GET") => {
-				let url = BASE_URL2 + endpoint;
+				
 				let actions = getActions();
 				let store = getStore();
+				let url = store.BASE_URL2 + endpoint;
 				try {
 					let response;
 					if (metodo != "GET") {
@@ -123,9 +124,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return { message: "error" };
 			},
 			putGenerico: async (endpoint, data) => {
-				let url = BASE_URL + endpoint;
 				let actions = getActions();
 				let store = getStore();
+				let url = store.BASE_URL2 + endpoint;
 				try {
 					let response = await fetch(url, {
 						method: "PUT",

@@ -10,6 +10,7 @@ export function workflowActions(getStore, getActions, setStore) {
     return {
         addNode: (sourceNodeId, newNode) => {
             // Add the new node to the existing elements
+            
             let actions = getActions();
             let store = getStore()
             console.log("addNode Function")

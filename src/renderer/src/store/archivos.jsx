@@ -1,19 +1,22 @@
 export const archivosStore = {
-	imagenCargada:false,
+    imagenCargada: false,
 }
 
 export function archivosActions(getStore, getActions, setStore) {
     //const BASE_URL = process.env.BASE_URL;
     //const BASE_URL2 = process.env.BASE_URL2;
     return {
-        downloadBase64File: async (base64Data, contentType, fileName)=> {
+        downloadBase64File: async (base64Data, contentType, fileName) => {
             const linkSource = `data:${contentType};base64,${base64Data}`;
             const downloadLink = document.createElement("a");
             downloadLink.href = linkSource;
             downloadLink.download = fileName;
             downloadLink.click();
-          },
+        },
         getArchivos: async (endpoint, data) => {
+            let storeTemp = getStore();
+            const BASE_URL = storeTemp.baseURL;
+            const BASE_URL2 = storeTemp.baseURL2;
             let url = BASE_URL + endpoint;
             let actions = getActions();
             let store = getStore();
@@ -23,7 +26,7 @@ export function archivosActions(getStore, getActions, setStore) {
                 headers: {
                     'Content-Type': 'application/json',
                     "responseType": "blob",
-                    "Authorization":localStorage.getItem("token")
+                    "Authorization": localStorage.getItem("token")
                 },
                 body: JSON.stringify(data),
                 responseType: "blob"
@@ -42,7 +45,7 @@ export function archivosActions(getStore, getActions, setStore) {
             } */
             let archivoBlob = await respuesta.blob()
             console.log(archivoBlob)
-            
+
             // Create blob link to download
             const url2 = window.URL.createObjectURL(
                 new Blob([archivoBlob]), //{ type: "application/octet-stream" }
@@ -64,8 +67,8 @@ export function archivosActions(getStore, getActions, setStore) {
             link.parentNode.removeChild(link);
 
             URL.revokeObjectURL(url2);
-            
-            
+
+
             return
         },
     }
