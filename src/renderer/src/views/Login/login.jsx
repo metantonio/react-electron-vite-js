@@ -48,7 +48,7 @@ const Login = () => {
             return
         }
         console.log("validating")
-        const response = await fetch(store.BASE_URL2 + "/new_password_poker_user", {
+        const response = await fetch(store.baseURL2 + "/new_password_poker_user", {
             method: "PUT",
             //mode: "no-cors",
             headers: {

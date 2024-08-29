@@ -94,7 +94,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				
 				let actions = getActions();
 				let store = getStore();
-				let url = store.BASE_URL2 + endpoint;
+				let url = store.baseURL2 + endpoint;
 				try {
 					let response;
 					if (metodo != "GET") {
@@ -126,7 +126,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			putGenerico: async (endpoint, data) => {
 				let actions = getActions();
 				let store = getStore();
-				let url = store.BASE_URL2 + endpoint;
+				let url = store.baseURL2 + endpoint;
 				try {
 					let response = await fetch(url, {
 						method: "PUT",

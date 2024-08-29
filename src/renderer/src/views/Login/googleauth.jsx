@@ -29,7 +29,7 @@ export default function Auth() {
     async function getUserInfo(codeResponse) {
 
 
-        let temp_url = store.BASE_URL2 + URL_LOGIN_GOOGLE
+        let temp_url = store.baseURL2 + URL_LOGIN_GOOGLE
         let response = await fetch(temp_url, {
             method: "POST",
             headers: {

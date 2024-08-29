@@ -14,7 +14,9 @@ function createWindow() {
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
-      sandbox: false
+      sandbox: false,
+      contextIsolation: false,
+      nodeIntegration: true,
     }
   })
 
@@ -37,6 +39,20 @@ function createWindow() {
         // Puedes pasar otras variables también
     });
   });
+
+  mainWindow.loadURL('http://localhost:3000')
+
+  // Establecer CSP para permitir conexiones a localhost:3341
+  mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
+    callback({
+        responseHeaders: {
+            ...details.responseHeaders,
+            'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' http://localhost:3341"
+        }
+    })
+  });
+
+  //mainWindow.loadURL(process.env.BASE_URL2);
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
