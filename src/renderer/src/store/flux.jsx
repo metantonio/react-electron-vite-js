@@ -78,10 +78,12 @@ const getState = ({ getStore, getActions, setStore }) => {
                 });
             },
 			init: () => {
-                window.electron.ipcRenderer.on('env-variables', (env) => {
+				console.log('Iniciando función init()');
+                window.api.ipcRenderer.on('env-variables', (env) => {
 					window.electron.ipcRenderer.send('about to read environment variables')
-                    setStore({ BASE_URL: env.BASE_URL });
-					setStore({ BASE_URL2: env.BASE_URL2 });
+					console.log(env)
+                    setStore({ BASE_URL: env.baseURL });
+					setStore({ BASE_URL2: env.baseURL2 });
 					window.electron.ipcRenderer.send('finish to read environment variables')
                     console.log('Base URL cargada en flux:', env.BASE_URL);
                 });

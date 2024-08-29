@@ -18,6 +18,11 @@ const injectContext = (PassedComponent) => {
         );
 
         useEffect(() => {
+			window.api.ipcRenderer.on('env-variables', (env) => {
+				console.log('Variables de entorno recibidas:', env);
+				// Aquí puedes setear el estado o realizar otras acciones
+			});
+			
 			state.actions.init();
             // Aquí puedes hacer llamadas iniciales o manejar eventos de Electron
             window.electron.ipcRenderer.send('leído appContext');

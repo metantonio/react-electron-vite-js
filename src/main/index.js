@@ -10,7 +10,7 @@ function createWindow() {
     width: 900,
     height: 670,
     show: false,
-    autoHideMenuBar: true,
+    autoHideMenuBar: false,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
@@ -29,9 +29,10 @@ function createWindow() {
 
   // Pasar variables de entorno al proceso de renderizado
   mainWindow.webContents.on('did-finish-load', () => {
+    console.log('BASE_URL:', process.env.BASE_URL_PUBLIC);
     mainWindow.webContents.send('env-variables', {
-        BASE_URL: process.env.BASE_URL_PUBLIC,
-        BASE_URL2: process.env.BASE_URL2
+      baseURL: process.env.BASE_URL_PUBLIC,
+      baseURL2: process.env.BASE_URL2
         // Puedes pasar otras variables también
     });
   });
